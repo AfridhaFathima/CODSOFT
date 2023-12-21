@@ -1,0 +1,72 @@
+def add():
+    print("\n")
+    global tasks
+    n=int(input("Enter number of tasks:"))
+    for i in range(n):
+        m=str(input("Enter a task:"))
+        if m in tasks:
+            print("Task has already been added")
+        else:
+            tasks.append(m)
+    print("Task has been added.")
+    print("\n")
+def view():
+    global tasks
+    global ctasks
+    print("\n")
+    print("Tasks:")
+    for i in range(len(tasks)):
+        print(tasks[i])
+    if ctasks==[]:
+        print("Tasks completed:")
+        print("None")
+    else:
+        print("Tasks completed:")
+        for i in range(len(ctasks)):
+            print(ctasks[i])
+    print("\n")
+    
+def delete():
+    global tasks
+    print("\n")
+    a=input("Enter task to delete:")
+    if a in tasks:
+        tasks.remove(a)
+        print("Successfully deleted")
+    else:
+        print("Task doesn't exist")
+    print("\n")
+def update():
+    print("\n")
+    global ctasks
+    global tasks
+    a=input("Enter completed task:")
+    if a in tasks:
+        tasks.remove(a)
+        ctasks.append(a)
+        print("Updated successfully")
+    else:
+        print("Task doesn't exist")
+tasks=[]
+ctasks=[]
+while True:
+    n=int(input('''Choose from the following:
+1)Add tasks
+2)View tasks
+3)Delete task
+4)Update task
+5)Quit
+Enter here:'''))
+    if n==1:
+        add()
+    elif n==2:
+        view()
+    elif n==3:
+        delete()
+    elif n==4:
+        update()
+    elif n==5:
+        print("Exiting...")
+        print("Successfully exited")
+        break
+        
