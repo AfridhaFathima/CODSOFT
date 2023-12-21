@@ -1,0 +1,73 @@
+#imports
+from tkinter import*
+import math
+#program
+text=""
+def textarea(ent):
+    global text
+    text+=str(ent)
+    area.delete("1.0","end")
+    area.insert("1.0",text)
+def calc():
+    global text
+    try:
+        text=text.replace("^","**").replace("pi","math.pi").replace("%","/100").replace("sqrt", "math.sqrt")
+        text=str(eval(text))
+        area.delete("1.0","end")
+        area.insert("1.0",text)
+    except:
+        text="ERROR"
+        area.delete("1.0","end")
+        area.insert("1.0",text)
+def clear():
+    global text
+    text=""
+    area.delete("1.0","end")
+def backspace():
+    global text
+    text = text[:-1]    
+    area.delete("1.0","end")
+    area.insert("1.0",text)
+#main    
+master=Tk()
+master.title("Calculator")
+area=Text(master,height=2,width=21,font=("Rosewood Std Regular",20))
+area.grid(row=1,column=1,columnspan=4)
+
+#buttons
+Button(master,text="1",command=lambda: textarea(1),width=5,font=("Rosewood Std Regular",14)).grid(row=5,column=1)
+Button(master,text="2",command=lambda: textarea(2),width=5,font=("Rosewood Std Regular",14)).grid(row=5,column=2)
+Button(master,text="3",command=lambda: textarea(3),width=5,font=("Rosewood Std Regular",14)).grid(row=5,column=3)
+Button(master,text="4",command=lambda: textarea(4),width=5,font=("Rosewood Std Regular",14)).grid(row=4,column=1)
+Button(master,text="5",command=lambda: textarea(5),width=5,font=("Rosewood Std Regular",14)).grid(row=4,column=2)
+Button(master,text="6",command=lambda: textarea(6),width=5,font=("Rosewood Std Regular",14)).grid(row=4,column=3)
+Button(master,text="7",command=lambda: textarea(7),width=5,font=("Rosewood Std Regular",14)).grid(row=3,column=1)
+Button(master,text="8",command=lambda: textarea(8),width=5,font=("Rosewood Std Regular",14)).grid(row=3,column=2)
+Button(master,text="9",command=lambda: textarea(9),width=5,font=("Rosewood Std Regular",14)).grid(row=3,column=3)
+Button(master,text="0",command=lambda: textarea(0),width=5,font=("Rosewood Std Regular",14)).grid(row=6,column=2)
+
+Button(master,text="C",command=lambda: clear(),width=5,font=("Rosewood Std Regular",14)).grid(row=2,column=1)
+
+Button(master,text="(",command=lambda: textarea("("),width=5,font=("Rosewood Std Regular",14)).grid(row=2,column=2)
+Button(master,text=")",command=lambda: textarea(")"),width=5,font=("Rosewood Std Regular",14)).grid(row=2,column=3)
+
+Button(master,text="+",command=lambda: textarea("+"),width=5,font=("Rosewood Std Regular",14)).grid(row=2,column=4)
+Button(master,text="-",command=lambda: textarea("-"),width=5,font=("Rosewood Std Regular",14)).grid(row=3,column=4)
+Button(master,text="/",command=lambda: textarea("/"),width=5,font=("Rosewood Std Regular",14)).grid(row=4,column=4)
+Button(master,text="*",command=lambda: textarea("*"),width=5,font=("Rosewood Std Regular",14)).grid(row=5,column=4)
+
+Button(master,text=".",command=lambda: textarea("."),width=5,font=("Rosewood Std Regular",14)).grid(row=6,column=1)
+
+Button(master,text="^",command=lambda: textarea("^"),width=5,font=("Rosewood Std Regular",14)).grid(row=6,column=4)
+
+Button(master,text="=",command=lambda: calc(),width=5,font=("Rosewood Std Regular",14)).grid(row=7,column=3)
+
+Button(master,text="pi",command=lambda: textarea("pi"),width=5,font=("Rosewood Std Regular",14)).grid(row=6,column=3)
+
+Button(master,text="B",command=lambda: backspace(),width=5,font=("Rosewood Std Regular",14)).grid(row=7,column=1)
+
+Button(master,text="%",command=lambda: textarea("%"),width=5,font=("Rosewood Std Regular",14)).grid(row=7,column=2)
+
+Button(master,text="sqrt()",command=lambda: textarea("sqrt"),width=5,font=("Rosewood Std Regular",14)).grid(row=7,column=4)
+
+master.mainloop()
